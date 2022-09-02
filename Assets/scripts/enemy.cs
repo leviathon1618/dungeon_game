@@ -9,8 +9,10 @@ public class enemy : MonoBehaviour
     public float speed;
     public GameObject carrot_prefab;
     public List<GameObject> memes = new List<GameObject>();
+    private Rigidbody2D rb;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         player_obj = GameObject.Find("player");
 
         if (tag == "chungus")
@@ -31,12 +33,12 @@ public class enemy : MonoBehaviour
     {
         if (collision.transform.tag == "bullet")
         {
-            health -= 25;
+            health -= 1;
         }
         if (transform.tag == "donkey" && collision.transform.name == "player")
         {
             player player_obj = collision.transform.GetComponent<player>();
-
+            collision.transform.GetComponent<Rigidbody2D>().AddForce(transform.right, ForceMode2D.Impulse);
             StartCoroutine(turn_back_on(player_obj));
         }
     }
@@ -46,7 +48,6 @@ public class enemy : MonoBehaviour
         print("hit");
         speed = 0;
         variable.enabled = false;
-        
         yield return new WaitForSeconds(2);
         variable.enabled = true;
         yield return new WaitForSeconds(1);
@@ -85,7 +86,7 @@ public class enemy : MonoBehaviour
         {
             transform.LookAt(player_obj.transform);
             transform.right = player_obj.transform.position - transform.position;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
             for (int i = 0; i < 100; i++)
             {
                 yield return new WaitForSeconds(0.004f);
@@ -111,7 +112,13 @@ public class enemy : MonoBehaviour
             if (distance < 0.3)
             {
                 print("explode");
+                player_obj.GetComponent<player>().take_creeper_damage();
+                Destroy(gameObject);
             }
+        }
+        if (health == 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

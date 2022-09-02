@@ -6,6 +6,7 @@ public class player : MonoBehaviour
 {
     public Camera main_cam;
     public Rigidbody2D rb;
+    public int health;
     public float speed;
     public GameObject bullet;
     // Start is called before the first frame update
@@ -13,6 +14,36 @@ public class player : MonoBehaviour
     {
         
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "troll")
+        {
+            health -= 1;
+        }
+        if (collision.transform.tag == "chungus")
+        {
+            health -= 1;
+        }
+        if (collision.transform.tag == "pog")
+        {
+            health -= 1;
+        }
+        if (collision.transform.tag == "donkey")
+        {
+            health -= 2;
+        }
+        if (collision.transform.tag == "nyan_cat")
+        {
+            health -= 1;
+        }
+    }
+
+    public void take_creeper_damage()
+    {
+        health -= 2;
+    }
+
     // Update is called once per frame
     void Update()
     {

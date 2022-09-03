@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4284378175260910971}
   - component: {fileID: 7176649616226498383}
   - component: {fileID: 5918502144380970233}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: carrot-removebg-preview
   m_TagString: chungus
   m_Icon: {fileID: 0}

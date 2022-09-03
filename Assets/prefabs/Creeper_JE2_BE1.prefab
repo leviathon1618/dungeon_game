@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 8536510884637383570}
   - component: {fileID: 8536510884637383572}
   - component: {fileID: 8536510884637383573}
+  - component: {fileID: 759903358}
   m_Layer: 0
   m_Name: Creeper_JE2_BE1
   m_TagString: creeper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8536510884637383571
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8536510884637383569}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.74, y: 0.326, z: 0}
   m_LocalScale: {x: 0.111600004, y: 0.111600004, z: 0.111600004}
   m_Children: []
@@ -117,7 +118,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
   speed: 0.18
   carrot_prefab: {fileID: 1220291137758068797, guid: a20ce979efda05c48a50ae150ec9cf46, type: 3}
   memes: []
+--- !u!61 &759903358
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8536510884637383569}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 2.61}
+    newSize: {x: 1.28, y: 2.61}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 2.61}
+  m_EdgeRadius: 0

@@ -6,6 +6,8 @@ using System;
 public class room_spawn_v2 : MonoBehaviour
 {
     public GameObject point1;
+    public GameObject bridge;
+    public List<GameObject> bridges;
     public List<string> room_points = new List<string> ();
     public List<GameObject> spawn_list = new List<GameObject>();
     public List<GameObject> rooms = new List<GameObject>();
@@ -72,10 +74,13 @@ public class room_spawn_v2 : MonoBehaviour
         //if the room fits spawn it
         //find the exit of the room
         //spawn small room next to the exit
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 6; i++)
         {
-            //caal new room
+            //new_room1();
         }
+        
+         
+        
     }
 
     public void new_room1()
@@ -97,22 +102,33 @@ public class room_spawn_v2 : MonoBehaviour
         {
             if (item == check_up)
             {
-                //print("removed up " + total_count);
+                //print("spawn bridge up");
+                Vector3 bridge_off = new Vector3(0, 0.5f, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position +bridge_off, Quaternion.identity));
                 optiontest.Remove("up");
             }
             if (item == check_down)
             {
                 //print("removed down " + total_count);
+                //print("spawn bridge down");
+                Vector3 bridge_off = new Vector3(0, -0.5f, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position + bridge_off, Quaternion.identity));
                 optiontest.Remove("down");
             }
             if (item == check_left)
             {
                 //print("removed left " + total_count);
+                //print("spawn bridge left");
+                Vector3 bridge_off = new Vector3(-0.5f, 0, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position + bridge_off, Quaternion.identity));
                 optiontest.Remove("left");
             }
             if (item == check_right)
             {
                 //print("removed right " + total_count);
+                //print("spawn bridge right");
+                Vector3 bridge_off = new Vector3(0.5f, 0, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position + bridge_off, Quaternion.identity));
                 optiontest.Remove("right");
             }
         }
@@ -121,23 +137,31 @@ public class room_spawn_v2 : MonoBehaviour
         //rand = 1;
         if (optiontest[rand] == "up")
         {
-            //print("up " + total_count);
+            print("up");
             spawn_up();
+            Vector3 bridge_off = new Vector3(0, 0.5f, 0);
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
         }
         if (optiontest[rand] == "down")
         {
-            //print("down " + total_count);
+            print("down");
             spawn_down();
+            Vector3 bridge_off = new Vector3(0, -0.5f, 0);
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
         }
         if (optiontest[rand] == "left")
         {
-            //print("left " + total_count);
+            print("left");
             spawn_left();
+            Vector3 bridge_off = new Vector3(-0.5f, 0, 0);
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
         }
         if (optiontest[rand] == "right")
         {
-            //print("right " + total_count);
+            print("right");
             spawn_right();
+            Vector3 bridge_off = new Vector3(0.5f, 0, 0);
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
         }
         total_count++;
         //attempt_spawn();
@@ -366,7 +390,7 @@ public class room_spawn_v2 : MonoBehaviour
         if (count == 0)
         {
             GameObject new_shape = Instantiate(shape, offset, Quaternion.identity);
-            
+            //line_rend.SetPosition(rooms.Count-1, new_shape.transform.position);
             foreach (var item in shape_points)
             {
                 int x_pos = Convert.ToInt32(item.Split(',')[0]);
@@ -376,6 +400,8 @@ public class room_spawn_v2 : MonoBehaviour
                 room_points.Add($"{point_name.transform.position.x},{point_name.transform.position.y}");
             }
             rooms.Add(new_shape);
+            //line_rend.positionCount = rooms.Count;
+            //line_rend.SetPosition(rooms.Count - 1, new_shape.transform.position);
             spawn_small_room(x_position, y_position);
             
         }
@@ -388,22 +414,34 @@ public class room_spawn_v2 : MonoBehaviour
             if (optiontest[rand] == "up")
             {
                 Debug.LogWarning("try up " + total_count);
+                bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_up();
+                Vector3 bridge_off = new Vector3(0, 0.5f, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
             }
             if (optiontest[rand] == "down")
             {
                 Debug.LogWarning("try down " + total_count);
+                bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_down();
+                Vector3 bridge_off = new Vector3(0, -0.5f, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
             }
             if (optiontest[rand] == "left")
             {
                 Debug.LogWarning("try left " + total_count);
+                bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_left();
+                Vector3 bridge_off = new Vector3(0.5f, 0, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
             }
             if (optiontest[rand] == "right")
             {
                 Debug.LogWarning("try right " + total_count);
+                bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_right();
+                Vector3 bridge_off = new Vector3(0.5f, 0, 0);
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
             }
             total_count++;
         }

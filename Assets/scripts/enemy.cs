@@ -9,10 +9,10 @@ public class enemy : MonoBehaviour
     public float speed;
     public GameObject carrot_prefab;
     public List<GameObject> memes = new List<GameObject>();
-    private Rigidbody2D rb;
+    
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
         player_obj = GameObject.Find("player");
 
         if (tag == "chungus")
@@ -31,8 +31,10 @@ public class enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        print(name+"1");
         if (collision.transform.tag == "bullet")
         {
+            print(name+"2");
             health -= 1;
         }
         if (transform.tag == "donkey" && collision.transform.name == "player")
@@ -112,7 +114,8 @@ public class enemy : MonoBehaviour
             if (distance < 0.3)
             {
                 print("explode");
-                player_obj.GetComponent<player>().take_creeper_damage();
+                player_obj.GetComponent<player>().remove_heart(2);
+                
                 Destroy(gameObject);
             }
         }

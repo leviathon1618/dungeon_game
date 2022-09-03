@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4273282301308809186
 Transform:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 10
   speed: 0.3
   carrot_prefab: {fileID: 0}
   memes: []

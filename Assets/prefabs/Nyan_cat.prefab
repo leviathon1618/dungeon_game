@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5737626420057321956}
   - component: {fileID: 5737626420057321957}
   - component: {fileID: 5737626420057321962}
+  - component: {fileID: 1094237866}
   m_Layer: 0
   m_Name: Nyan_cat
   m_TagString: nyan_cat
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   speed: 1
   carrot_prefab: {fileID: 0}
   memes: []
@@ -126,3 +127,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.72, y: 0.86}
   m_EdgeRadius: 0
+--- !u!50 &1094237866
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737626420057321958}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 200
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

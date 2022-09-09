@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8723314867042831539
 Transform:
   m_ObjectHideFlags: 0
@@ -97,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 15
   speed: 0
   carrot_prefab: {fileID: 1220291137758068797, guid: a20ce979efda05c48a50ae150ec9cf46, type: 3}
   memes: []
+  spawner: {fileID: 0}
 --- !u!70 &2077616169
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

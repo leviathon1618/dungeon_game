@@ -12,8 +12,11 @@ public class room_spawn_v2 : MonoBehaviour
     public List<GameObject> spawn_list = new List<GameObject>();
     public List<GameObject> rooms = new List<GameObject>();
     public List<string> optiontest = new List<string>();
-    private List<GameObject> options = new List<GameObject>();
     public List<string> offset = new List<string>();
+    public List<GameObject>enemies = new List<GameObject> ();
+    public List<GameObject> current_enemies = new List<GameObject>();
+    public GameObject button_obj;
+    private List<GameObject> options = new List<GameObject>();
     private List<string> shape1 = new List<string> ();
     private List<string> shape2 = new List<string>();
     private List<string> shape3 = new List<string>();
@@ -59,28 +62,14 @@ public class room_spawn_v2 : MonoBehaviour
         shape6.Add("0,1");
         shape6.Add("-1,1");
         shape6.Add("1,0");
-     
 
-        //foreach (var item in shape4)
-        //{
-        //    int x_pos = Convert.ToInt32(item.Split(',')[0]);
-        //    int y_pos = Convert.ToInt32(item.Split(',')[1]);
-        //    Instantiate(point1, new Vector3(x_pos, y_pos, 0), Quaternion.identity);
-        //}
         spawn_small_room(0, 0);
 
-        //pick a direction
-        //pick a room
-        //if the room fits spawn it
-        //find the exit of the room
-        //spawn small room next to the exit
-        for (int i = 0; i < 6; i++)
-        {
-            //new_room1();
-        }
-        
-         
-        
+    }
+
+    public void hide_button()
+    {
+        button_obj.SetActive(false);
     }
 
     public void new_room1()
@@ -104,7 +93,7 @@ public class room_spawn_v2 : MonoBehaviour
             {
                 //print("spawn bridge up");
                 Vector3 bridge_off = new Vector3(0, 0.5f, 0);
-                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position +bridge_off, Quaternion.identity));
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position +bridge_off, Quaternion.Euler(0,0,90)));
                 optiontest.Remove("up");
             }
             if (item == check_down)
@@ -112,7 +101,7 @@ public class room_spawn_v2 : MonoBehaviour
                 //print("removed down " + total_count);
                 //print("spawn bridge down");
                 Vector3 bridge_off = new Vector3(0, -0.5f, 0);
-                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position + bridge_off, Quaternion.identity));
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 1].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
                 optiontest.Remove("down");
             }
             if (item == check_left)
@@ -140,14 +129,14 @@ public class room_spawn_v2 : MonoBehaviour
             print("up");
             spawn_up();
             Vector3 bridge_off = new Vector3(0, 0.5f, 0);
-            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
         }
         if (optiontest[rand] == "down")
         {
             print("down");
             spawn_down();
             Vector3 bridge_off = new Vector3(0, -0.5f, 0);
-            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
+            bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
         }
         if (optiontest[rand] == "left")
         {
@@ -399,6 +388,34 @@ public class room_spawn_v2 : MonoBehaviour
                 point_name.name = $"{shape.name} {x_pos},{y_pos}";
                 room_points.Add($"{point_name.transform.position.x},{point_name.transform.position.y}");
             }
+            //pick a number 2-5
+            //loop throught the enemy spawn script x amount of times
+            //spawn an enemy on the tile in a randomised place
+            //add the enemy to alist and unlock next room when the list is empty
+
+            int rand = UnityEngine.Random.Range(2, 6);
+            for (int i = 0; i < rand; i++)
+            {
+                int enemy_pick = UnityEngine.Random.Range(0, 6);
+                Vector3 rand_pos;
+                List<Vector3> positions = new List<Vector3>();
+
+                foreach (Transform child in shape.transform)
+                {
+                    if (child.name.Contains("Square")) 
+                    {
+                        float randx = UnityEngine.Random.Range(-0.5f, 0.5f);
+                        float randy = UnityEngine.Random.Range(-0.5f, 0.5f);
+                        positions.Add(child.transform.position + new Vector3(randx, randy, 0) +offset);
+                    }
+                }
+                int position_pick = UnityEngine.Random.Range(0, positions.Count -1);
+                rand_pos = positions[position_pick];
+
+                GameObject new_enemy = Instantiate(enemies[enemy_pick], rand_pos, Quaternion.identity);
+                current_enemies.Add(new_enemy);
+            }
+
             rooms.Add(new_shape);
             //line_rend.positionCount = rooms.Count;
             //line_rend.SetPosition(rooms.Count - 1, new_shape.transform.position);
@@ -417,7 +434,7 @@ public class room_spawn_v2 : MonoBehaviour
                 bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_up();
                 Vector3 bridge_off = new Vector3(0, 0.5f, 0);
-                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
             }
             if (optiontest[rand] == "down")
             {
@@ -425,7 +442,7 @@ public class room_spawn_v2 : MonoBehaviour
                 bridges.Remove(bridges[bridges.Count - 1]);
                 spawn_down();
                 Vector3 bridge_off = new Vector3(0, -0.5f, 0);
-                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
+                bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
             }
             if (optiontest[rand] == "left")
             {
@@ -461,6 +478,6 @@ public class room_spawn_v2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        current_enemies.Remove(null);
     }
 }

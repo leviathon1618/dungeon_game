@@ -9,10 +9,11 @@ public class enemy : MonoBehaviour
     public float speed;
     public GameObject carrot_prefab;
     public List<GameObject> memes = new List<GameObject>();
+    public room_spawn_v2 spawner;
     
     void Start()
     {
-        
+        spawner = GameObject.Find("spawner").GetComponent<room_spawn_v2>();
         player_obj = GameObject.Find("player");
 
         if (tag == "chungus")
@@ -31,10 +32,10 @@ public class enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        print(name+"1");
+        //print(name+"1");
         if (collision.transform.tag == "bullet")
         {
-            print(name+"2");
+            //print(name+"2");
             health -= 1;
         }
         if (transform.tag == "donkey" && collision.transform.name == "player")
@@ -47,7 +48,7 @@ public class enemy : MonoBehaviour
 
     public IEnumerator turn_back_on(player variable)
     {
-        print("hit");
+        //print("hit");
         speed = 0;
         variable.enabled = false;
         yield return new WaitForSeconds(2);
@@ -60,7 +61,7 @@ public class enemy : MonoBehaviour
     {
         while (true)
         {
-            print("shooting meme");
+            //print("shooting meme");
             yield return new WaitForSeconds(1f);
             int rand = Random.Range(0, 3);
             GameObject test = Instantiate(memes[rand], transform.position, Quaternion.identity);
@@ -113,7 +114,7 @@ public class enemy : MonoBehaviour
             float distance = Vector2.Distance(player_obj.transform.position, transform.position);
             if (distance < 0.3)
             {
-                print("explode");
+                //print("explode");
                 player_obj.GetComponent<player>().remove_heart(2);
                 
                 Destroy(gameObject);
@@ -121,7 +122,13 @@ public class enemy : MonoBehaviour
         }
         if (health == 0)
         {
+            spawner.current_enemies.Remove(gameObject);
             Destroy(gameObject);
+            spawner.current_enemies.Remove(null);
+            if (spawner.current_enemies.Count == 0)
+            {
+                spawner.new_room1();
+            }
         }
     }
 }

@@ -97,13 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  health: 10
   speed: 0
   carrot_prefab: {fileID: 1220291137758068797, guid: a20ce979efda05c48a50ae150ec9cf46, type: 3}
   memes:
   - {fileID: 5601358696001441510, guid: 0b43b7eba07e0a942b7d98f385438497, type: 3}
   - {fileID: 5508869269913594218, guid: 22ba4b0ee21498a4d959f1bc43a2e939, type: 3}
   - {fileID: 7954792489632658399, guid: 3488266c0d5e4a74a853acced55cd2d5, type: 3}
+  spawner: {fileID: 0}
 --- !u!61 &4570766254170073445
 BoxCollider2D:
   m_ObjectHideFlags: 0

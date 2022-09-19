@@ -10,6 +10,7 @@ public class enemy : MonoBehaviour
     public GameObject carrot_prefab;
     public List<GameObject> memes = new List<GameObject>();
     public room_spawn_v2 spawner;
+    public GameObject creeper;
     
     void Start()
     {
@@ -75,7 +76,7 @@ public class enemy : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             GameObject test = Instantiate(carrot_prefab, transform.position, Quaternion.identity);
             test.transform.right = player_obj.transform.position - transform.position;
             test.transform.rotation = test.transform.rotation * Quaternion.Euler(0, 0, 180);
@@ -112,19 +113,20 @@ public class enemy : MonoBehaviour
         if (tag == "creeper")
         {
             float distance = Vector2.Distance(player_obj.transform.position, transform.position);
-            if (distance < 0.3)
+            if (distance < 0.2f)
             {
                 //print("explode");
                 player_obj.GetComponent<player>().remove_heart(2);
-                
+                Instantiate(creeper, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
         if (health == 0)
         {
             spawner.current_enemies.Remove(gameObject);
+            //spawner.current_enemies.Remove(null);
             Destroy(gameObject);
-            spawner.current_enemies.Remove(null);
+            
             if (spawner.current_enemies.Count == 0)
             {
                 spawner.new_room1();

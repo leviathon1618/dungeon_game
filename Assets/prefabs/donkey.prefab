@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3273757699549804559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.446, y: 0.314, z: 0}
-  m_LocalScale: {x: 0.0126249725, y: 0.0126249725, z: 0.0126249725}
+  m_LocalScale: {x: 0.0070712473, y: 0.0070712473, z: 0.0070712473}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475e416614da7d44b39e14e92463978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 12
   speed: 0.3
   carrot_prefab: {fileID: 0}
   memes: []
+  spawner: {fileID: 0}
 --- !u!61 &3273757699549804554
 BoxCollider2D:
   m_ObjectHideFlags: 0

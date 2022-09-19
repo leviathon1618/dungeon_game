@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class room_spawn_v2 : MonoBehaviour
 {
@@ -70,6 +71,7 @@ public class room_spawn_v2 : MonoBehaviour
     public void hide_button()
     {
         button_obj.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void new_room1()
@@ -126,28 +128,28 @@ public class room_spawn_v2 : MonoBehaviour
         //rand = 1;
         if (optiontest[rand] == "up")
         {
-            print("up");
+            //print("up");
             spawn_up();
             Vector3 bridge_off = new Vector3(0, 0.5f, 0);
             bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
         }
         if (optiontest[rand] == "down")
         {
-            print("down");
+            //print("down");
             spawn_down();
             Vector3 bridge_off = new Vector3(0, -0.5f, 0);
             bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.Euler(0, 0, 90)));
         }
         if (optiontest[rand] == "left")
         {
-            print("left");
+            //print("left");
             spawn_left();
             Vector3 bridge_off = new Vector3(-0.5f, 0, 0);
             bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
         }
         if (optiontest[rand] == "right")
         {
-            print("right");
+            //print("right");
             spawn_right();
             Vector3 bridge_off = new Vector3(0.5f, 0, 0);
             bridges.Add(Instantiate(bridge, rooms[rooms.Count - 3].transform.position + bridge_off, Quaternion.identity));
@@ -396,7 +398,7 @@ public class room_spawn_v2 : MonoBehaviour
             int rand = UnityEngine.Random.Range(2, 6);
             for (int i = 0; i < rand; i++)
             {
-                int enemy_pick = UnityEngine.Random.Range(0, 6);
+                int enemy_pick = UnityEngine.Random.Range(0, 7);
                 Vector3 rand_pos;
                 List<Vector3> positions = new List<Vector3>();
 
@@ -478,6 +480,7 @@ public class room_spawn_v2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        current_enemies.Remove(null);
+        current_enemies = current_enemies.Where(item => item != null).ToList();
+        //current_enemies.Remove(null);
     }
 }

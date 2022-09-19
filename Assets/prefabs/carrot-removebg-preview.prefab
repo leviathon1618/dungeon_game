@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4284378175260910971}
   - component: {fileID: 7176649616226498383}
   - component: {fileID: 5918502144380970233}
+  - component: {fileID: 2570066854122214108}
   m_Layer: 8
   m_Name: carrot-removebg-preview
   m_TagString: chungus
@@ -113,3 +114,24 @@ CapsuleCollider2D:
   m_Offset: {x: -1.4042877, y: 0.099623926}
   m_Size: {x: 3.2175903, y: 0.89827543}
   m_Direction: 1
+--- !u!50 &2570066854122214108
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220291137758068797}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
     public Camera main_cam;
     public Rigidbody2D rb;
-    public int health =0;
+    public int health;
     public float speed;
+    public AudioSource death_noise;
+    public GameObject try_again_btn;
     public GameObject bullet;
     public GameObject heart_obj;
     public List<GameObject> hearts = new List<GameObject>();
+    public bool can_take_damage = true;
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
         for (float i = 1; i <= 5; i++)
         {
             float test = i / 10;
@@ -27,18 +32,43 @@ public class player : MonoBehaviour
 
     public void remove_heart(int damage)
     {
-        print("ded");
-
-        for (int i = 0; i < damage; i++)
+        if (can_take_damage == true)
         {
-            Destroy(hearts[hearts.Count - 1]);
-            hearts.Remove(hearts[hearts.Count - 1]);
+            if (health <= 0)
+            {
+                try_again_btn.SetActive(true);
+                Time.timeScale = 0;
+                print("dead");
+            }
+            else
+            {
+                print("hit");
+                death_noise.Play();
+                for (int i = 0; i < damage; i++)
+                {
+                    Destroy(hearts[hearts.Count - 1]);
+                    hearts.Remove(hearts[hearts.Count - 1]);
+                }
+                health--;
+                StartCoroutine(delay_damage());
+            }
         }
-
-        
-        
-        health--;
     }
+
+    public IEnumerator delay_damage()
+    {
+        can_take_damage = false;
+        yield return new WaitForSeconds(2);
+        can_take_damage = true;
+    }
+
+    public void reset_game()
+    {
+        Time.timeScale = 0;
+        SceneManager.LoadScene(0);
+    }
+
+
     public void add_heart()
     {
         int childs = Camera.main.transform.childCount;

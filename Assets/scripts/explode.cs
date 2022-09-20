@@ -29,8 +29,6 @@ public class explode : MonoBehaviour
 
     public IEnumerator explode_stuff()
     {
-        yield return new WaitForSeconds(1f);
-
         float delay = 0.01f;
         for (int i = 0; i < 15; i++)
         {

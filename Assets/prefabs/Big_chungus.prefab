@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3f267e2759b9a664eb8669725b75c463, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   carrot_prefab: {fileID: 1220291137758068797, guid: a20ce979efda05c48a50ae150ec9cf46, type: 3}
   memes: []
   spawner: {fileID: 0}
+  creeper: {fileID: 0}
 --- !u!70 &2077616169
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
